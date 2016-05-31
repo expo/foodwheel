@@ -10,6 +10,9 @@
     "orientation": "portrait",
     "sdkVersion": "5.0.0",
     "scheme": "foodwheel",
+    "loading": {
+      "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png"
+    },
     "ios": {
       "bundleIdentifier": "com.terribleben.foodwheel"
     },
