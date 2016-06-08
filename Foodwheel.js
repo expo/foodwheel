@@ -40,12 +40,12 @@ const wheelReduce = defaultReducer({
   },
 
   TICK({ wheel }, { dt }) {
-    let nAvel = wheel.avel + (wheel.avel < 0 ? 1200 : -1200) * dt;
-    if (nAvel < 0 !== wheel.avel < 0) {
+    let nAvel = wheel.avel * 0.5;
+    if (Math.abs(nAvel) < 5) {
       nAvel = 0;
     }
     return wheel.merge({
-      avel: nAvel,
+      avel: wheel.avel + (nAvel - wheel.avel) * dt,
       rot: wheel.rot + wheel.avel * dt,
     });
   },
