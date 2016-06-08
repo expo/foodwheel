@@ -2,6 +2,7 @@
 
 import React, {
   Image,
+  Linking,
   View,
 } from 'react-native';
 
@@ -54,6 +55,12 @@ const wheelReduce = defaultReducer({
     vy = moveX < 0.5 * Styles.screenW ? -vy : vy;
     return wheel.merge({
       avel: Styles.screenW * 2 * vy,
+    });
+  },
+
+  SPIN({ wheel }) {
+    return wheel.merge({
+      avel: 1000,
     });
   },
 
@@ -111,14 +118,35 @@ const sceneReduce = (state = Immutable({}), action, dispatch) => {
   });
 };
 
-const Scene = () => (
-  <View
-    key="scene-container"
-    style={[Styles.container, { backgroundColor: '#000' }]}>
-    <Tabletop />
-    <Wheel />
-  </View>
-);
+@connect()
+class Scene extends React.Component {
+  componentDidMount() {
+    Linking.addEventListener('url', (event) => {
+      let { url } = event;
+      if (ExponentConstants.linkingUri) {
+        if (url.indexOf(ExponentConstants.linkingUri) === 0) {
+          let linkPath = url.substring(ExponentConstants.linkingUri.length);
+          if (linkPath === 'spin') {
+            this.props.dispatch({
+              type: 'SPIN',
+            });
+          }
+        }
+      }
+    });
+  }
+
+  render() {
+    return (
+      <View
+        key="scene-container"
+        style={[Styles.container, { backgroundColor: '#000' }]}>
+        <Tabletop />
+        <Wheel />
+      </View>
+    );
+  }
+};
 
 
 export {
