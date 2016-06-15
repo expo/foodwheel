@@ -109,13 +109,17 @@ class Clock extends React.Component {
  * Brings together event handlers and the Scene.
  */
 
-const Game = () => (
-  <View style={Styles.container}>
-    <Clock />
-    <Scene />
-    <Touch style={Styles.container} />
-  </View>
-);
+class Game extends React.Component {
+  render() {
+    return (
+      <View style={Styles.container}>
+        <Clock />
+        <Scene {...this.props} />
+        <Touch style={Styles.container} />
+      </View>
+    );
+  }
+}
 
 
 /**
@@ -140,16 +144,20 @@ const mainReduce = (state, action) => {
   return state;
 };
 
-const Main = () => {
-  REPL.connect();
+const store = createStore(mainReduce, mainReduce(undefined, { type: 'START' }));
 
-  const store = createStore(mainReduce,
-                            mainReduce(undefined, { type: 'START' }));
-  return (
-    <Provider store={store}>
-      <Game />
-    </Provider>
-  );
-};
+class Main extends React.Component {
+  componentDidMount() {
+    REPL.connect();
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <Game {...this.props} />
+      </Provider>
+    );
+  }
+}
 
 AppRegistry.registerComponent('main', () => Main);

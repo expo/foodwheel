@@ -62,7 +62,7 @@ const wheelReduce = defaultReducer({
 
   SPIN({ wheel }) {
     return wheel.merge({
-      avel: 1000,
+      avel: 1000 + Math.random() * 100,
     });
   },
 
@@ -122,20 +122,33 @@ const sceneReduce = (state = Immutable({}), action, dispatch) => {
 
 @connect()
 class Scene extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    if (props.exp.initialUri) {
+      this.handleLink(props.exp.initialUri);
+    }
+  }
+
   componentDidMount() {
     Linking.addEventListener('url', (event) => {
       let { url } = event;
-      if (ExponentConstants.linkingUri) {
-        if (url.indexOf(ExponentConstants.linkingUri) === 0) {
-          let linkPath = url.substring(ExponentConstants.linkingUri.length);
-          if (linkPath === 'spin') {
-            this.props.dispatch({
-              type: 'SPIN',
-            });
-          }
-        }
+      if (url) {
+        this.handleLink(url);
       }
     });
+  }
+
+  handleLink(url) {
+    if (ExponentConstants.linkingUri) {
+      if (url.indexOf(ExponentConstants.linkingUri) === 0) {
+        let linkPath = url.substring(ExponentConstants.linkingUri.length);
+        if (linkPath === 'spin') {
+          this.props.dispatch({
+            type: 'SPIN',
+          });
+        }
+      }
+    }
   }
 
   render() {
