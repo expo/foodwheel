@@ -1,20 +1,22 @@
 'use strict';
 
-import React, {
+import {
   Image,
   Linking,
+  NativeModules,
   View,
 } from 'react-native';
+import React from 'react';
 
-import { connect } from 'react-redux/native';
+import { connect } from 'react-redux';
 import Immutable from 'seamless-immutable';
 
 import Media from './Media';
+let { ExponentConstants } = NativeModules;
+import REPL from './REPL';
 import Styles from './Styles';
 
-import REPL from './REPL';
-
-REPL.registerEval('Foodwheel', (c) => eval(c));
+REPL.registerEval('Foodwheel', (c) => eval(c)); // eslint-disable-line no-eval
 
 
 /*
@@ -146,7 +148,7 @@ class Scene extends React.Component {
       </View>
     );
   }
-};
+}
 
 
 export {

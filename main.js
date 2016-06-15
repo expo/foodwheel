@@ -1,24 +1,22 @@
 'use strict';
 
-import React, {
+import {
   AppRegistry,
   PanResponder,
   View,
 } from 'react-native';
+import React from 'react';
 
-import { connect, Provider } from 'react-redux/native';
+import { connect, Provider } from 'react-redux';
 import { createStore } from 'redux';
 
+import REPL from './REPL';
 import Styles from './Styles';
 
-
-import REPL from './REPL';
-
-REPL.registerEval('main', (c) => eval(c));
-
+REPL.registerEval('main', (c) => eval(c)); // eslint-disable-line no-eval
 
 // Import from a different module for a different game!
-import { sceneReduce, Scene } from './Foodwheel';
+import { Scene, sceneReduce } from './Foodwheel';
 
 
 /**
@@ -76,7 +74,7 @@ class Clock extends React.Component {
 
   componentWillUnmount() {
     if (this._tickRequestID) {
-      window.cancelAnimationFrame(this._tickRequestID);
+      cancelAnimationFrame(this._tickRequestID);
     }
   }
 
@@ -115,7 +113,7 @@ const Game = () => (
   <View style={Styles.container}>
     <Clock />
     <Scene />
-    <Touch style={Styles.container}/>
+    <Touch style={Styles.container} />
   </View>
 );
 
@@ -127,8 +125,6 @@ const Game = () => (
  */
 
 const dispatchQueue = [];
-
-const queueDispatch = (action) => dispatchQueue.push(action);
 
 const mainReduce = (state, action) => {
   if (action.type === 'TICK') {
@@ -151,7 +147,7 @@ const Main = () => {
                             mainReduce(undefined, { type: 'START' }));
   return (
     <Provider store={store}>
-      {() => <Game />}
+      <Game />
     </Provider>
   );
 };
