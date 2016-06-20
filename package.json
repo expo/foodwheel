@@ -4,22 +4,6 @@
   "description": "Wheeeeeeeeeeee!!",
   "main": "main.js",
   "author": null,
-  "exp": {
-    "name": "Food Wheel",
-    "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
-    "orientation": "portrait",
-    "sdkVersion": "6.0.0",
-    "scheme": "foodwheel",
-    "loading": {
-      "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png"
-    },
-    "ios": {
-      "bundleIdentifier": "com.terribleben.foodwheel"
-    },
-    "android": {
-      "package": "com.terribleben.foodwheel"
-    }
-  },
   "eslintConfig": {
     "extends": "exponent/react"
   },
