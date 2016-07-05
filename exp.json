@@ -1,4 +1,5 @@
 {
+  "slug": "foodwheel",
   "name": "Food Wheel",
   "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
   "orientation": "portrait",
