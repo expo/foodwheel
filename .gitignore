@@ -3,3 +3,4 @@
 node_modules
 
 /repl/scratch.js
+.dir-locals.el
