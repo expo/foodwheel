@@ -11,7 +11,10 @@
     "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png"
   },
   "ios": {
-    "bundleIdentifier": "com.terribleben.foodwheel"
+    "bundleIdentifier": "com.terribleben.foodwheel",
+    "permissions": {
+      "remoteNotifications": false,
+    }
   },
   "android": {
     "package": "com.terribleben.foodwheel"
