@@ -12,9 +12,6 @@
   },
   "ios": {
     "bundleIdentifier": "com.terribleben.foodwheel",
-    "permissions": {
-      "remoteNotifications": false,
-    }
   },
   "android": {
     "package": "com.terribleben.foodwheel"
