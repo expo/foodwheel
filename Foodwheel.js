@@ -18,6 +18,24 @@ import Styles from './Styles';
 
 REPL.registerEval('Foodwheel', (c) => eval(c)); // eslint-disable-line no-eval
 
+const TWOPI = Math.PI * 2.0;
+
+function diffAngle(a, b) {
+    while (a > TWOPI) a -= TWOPI;
+    while (b > TWOPI) b -= TWOPI;
+    while (a < 0) a += TWOPI;
+    while (b < 0) b += TWOPI;
+
+    let diff = a - b;
+    if (Math.abs(diff) <= Math.PI) return diff;
+
+    while (a > Math.PI) a -= TWOPI;
+    while (b > Math.PI) b -= TWOPI;
+    while (a < -Math.PI) a += TWOPI;
+    while (b < -Math.PI) b += TWOPI;
+
+    return a - b;
+}
 
 /*
  * Return a reducer that runs the reducer `reductions[action]`, defaulting to
@@ -53,10 +71,18 @@ const wheelReduce = defaultReducer({
     });
   },
 
-  TOUCH({ wheel }, { moveX, vy, move, pressed }) {
-    vy = moveX < 0.5 * Styles.screenW ? -vy : vy;
+  TOUCH({ wheel }, { moveX, moveY, vx, vy, move, pressed }) {
+    let vCenterToTouch = { x: moveX - (Styles.screenW * 0.5), y: moveY - (Styles.screenH * 0.5) };
+    let vTouchVelocity = { x: vx, y: vy };
+
+    let angleCenterToTouch = Math.atan2(vCenterToTouch.y, vCenterToTouch.x);
+    let angleTouchVelocity = Math.atan2(vTouchVelocity.y, vTouchVelocity.x);
+    let magnitudeTouchVelocity = Math.sqrt((vTouchVelocity.x * vTouchVelocity.x) + (vTouchVelocity.y * vTouchVelocity.y));
+    let distanceCenterToTouch = Math.sqrt((vCenterToTouch.x * vCenterToTouch.x) + (vCenterToTouch.y * vCenterToTouch.y));
+    let magicalTorqueFactor = distanceCenterToTouch * 0.02 * (0.5 * Styles.screenW);
+
     return wheel.merge({
-      avel: Styles.screenW * 2 * vy,
+      avel: Math.sin(diffAngle(angleTouchVelocity, angleCenterToTouch)) * magnitudeTouchVelocity * magicalTorqueFactor,
     });
   },
 
