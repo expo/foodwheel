@@ -1,7 +1,7 @@
 {
   "slug": "foodwheel",
   "name": "Food Wheel",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
   "orientation": "portrait",
   "sdkVersion": "8.0.0",

@@ -19,8 +19,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.0.0",
-    "babel-preset-react-native-stage-0": "^1.0.1",
     "babel-plugin-transform-react-constant-elements": "^6.5.0",
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "eslint": "^2.4.0",
     "eslint-config-exponent": "^1.0.11",
     "eslint-plugin-react": "^5.1.1"
