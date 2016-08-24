@@ -5,6 +5,7 @@ import {
   Linking,
   NativeModules,
   View,
+  StatusBar,
 } from 'react-native';
 import React from 'react';
 
@@ -21,18 +22,20 @@ REPL.registerEval('Foodwheel', (c) => eval(c)); // eslint-disable-line no-eval
 const TWOPI = Math.PI * 2.0;
 
 function diffAngle(a, b) {
-    while (a > TWOPI) a -= TWOPI;
-    while (b > TWOPI) b -= TWOPI;
-    while (a < 0) a += TWOPI;
-    while (b < 0) b += TWOPI;
+    while (a > TWOPI) { a -= TWOPI; }
+    while (b > TWOPI) { b -= TWOPI; }
+    while (a < 0) { a += TWOPI; }
+    while (b < 0) { b += TWOPI; }
 
     let diff = a - b;
-    if (Math.abs(diff) <= Math.PI) return diff;
+    if (Math.abs(diff) <= Math.PI) {
+      return diff;
+    }
 
-    while (a > Math.PI) a -= TWOPI;
-    while (b > Math.PI) b -= TWOPI;
-    while (a < -Math.PI) a += TWOPI;
-    while (b < -Math.PI) b += TWOPI;
+    while (a > Math.PI) { a -= TWOPI; }
+    while (b > Math.PI) { b -= TWOPI; }
+    while (a < -Math.PI) { a += TWOPI; }
+    while (b < -Math.PI) { b += TWOPI; }
 
     return a - b;
 }
@@ -182,6 +185,9 @@ class Scene extends React.Component {
       <View
         key="scene-container"
         style={[Styles.container, { backgroundColor: '#000' }]}>
+        <StatusBar
+          style="default"
+        />
         <Tabletop />
         <Wheel />
       </View>
