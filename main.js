@@ -18,9 +18,6 @@ REPL.registerEval('main', (c) => eval(c)); // eslint-disable-line no-eval
 // Import from a different module for a different game!
 import { Scene, sceneReduce } from './Foodwheel';
 
-import { Permissions, Notifications } from 'exponent';
-
-
 /**
  * Touch
  *
@@ -151,22 +148,6 @@ const store = createStore(mainReduce, mainReduce(undefined, { type: 'START' }));
 class Main extends React.Component {
   componentDidMount() {
     REPL.connect();
-
-    this.registerForPushNotificationsAsync();
-  }
-
-  async registerForPushNotificationsAsync() {
-    let { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS);
-
-    // Stop here if the user did not grant permissions
-    if (status !== 'granted') {
-      return;
-    }
-
-    // Get the token that uniquely identifies this device
-    let token = await Notifications.getExponentPushTokenAsync();
-
-    alert(token);
   }
 
   render() {
