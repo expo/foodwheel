@@ -5,11 +5,13 @@ import {
   Linking,
   NativeModules,
   View,
+  Platform,
   StatusBar,
 } from 'react-native';
 import React from 'react';
 
 import { connect } from 'react-redux';
+import 'exponent';
 import Immutable from 'seamless-immutable';
 
 import Media from './Media';
@@ -83,6 +85,11 @@ const wheelReduce = defaultReducer({
     let magnitudeTouchVelocity = Math.sqrt((vTouchVelocity.x * vTouchVelocity.x) + (vTouchVelocity.y * vTouchVelocity.y));
     let distanceCenterToTouch = Math.sqrt((vCenterToTouch.x * vCenterToTouch.x) + (vCenterToTouch.y * vCenterToTouch.y));
     let magicalTorqueFactor = distanceCenterToTouch * 0.02 * (0.5 * Styles.screenW);
+
+    if (Platform.OS === 'android') {
+      // cool velocity, android
+      magnitudeTouchVelocity *= 1000000;
+    }
 
     return wheel.merge({
       avel: Math.sin(diffAngle(angleTouchVelocity, angleCenterToTouch)) * magnitudeTouchVelocity * magicalTorqueFactor,
