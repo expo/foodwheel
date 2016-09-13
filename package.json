@@ -8,10 +8,10 @@
     "extends": "exponent/react"
   },
   "dependencies": {
-    "exponent": "^8.0.0",
+    "exponent": "~10.0.0",
     "@exponent/with-custom-font": "^1.0.0",
-    "react": "15.2.1",
-    "react-native": "exponentjs/react-native#sdk-8.0.0",
+    "react": "~15.3.1",
+    "react-native": "exponentjs/react-native#sdk-10",
     "react-redux": "^4.4.5",
     "redux": "^3.0.4",
     "seamless-immutable": "^6.1.0",
