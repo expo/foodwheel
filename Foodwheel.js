@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import React from 'react';
 
+import { Entypo } from '@exponent/vector-icons';
+
 import { connect } from 'react-redux';
 import 'exponent';
 import Immutable from 'seamless-immutable';
@@ -111,17 +113,56 @@ const Wheel = connect(
   ({ wheel }) => wheel
 )(
   ({ rot, w, h }) => {
+    let left = 0.5 * (Styles.screenW - w);
+    let top = 0.5 * (Styles.screenH - h);
+    let arrowSize = 48;
+    let arrowShadowSize = 1;
+    let shadowColor = '#333333';
+    let arrowName = 'arrow-down';
     return (
-      <Image
-        key="wheel"
-        style={{ position: 'absolute',
-                 transform: [{ rotate: rot + 'deg' }],
-                 left: 0.5 * (Styles.screenW - w),
-                 top: 0.5 * (Styles.screenH - h),
-                 width: w, height: h,
-                 backgroundColor: 'transparent' }}
-        source={{ uri: Media['foodwheel.png'] }}
-      />
+      <View>
+        <Image
+          key="wheel"
+          style={{ position: 'absolute',
+                   transform: [{ rotate: rot + 'deg' }],
+                   left,
+                   top,
+                   width: w, height: h,
+                   backgroundColor: 'transparent' }}
+          source={{ uri: Media['foodwheel.png'] }}
+        />
+          <Entypo name={arrowName} size={(arrowSize)} color={shadowColor} style={{
+              position: 'absolute',
+              backgroundColor: 'transparent',
+              left: left + w / 2 - arrowSize / 2 - (arrowShadowSize / 2),
+              top: top - 10 - arrowSize / 2 - (arrowShadowSize / 2),
+          }} />
+        <Entypo name={arrowName} size={(arrowSize)} color={shadowColor} style={{
+              position: 'absolute',
+              backgroundColor: 'transparent',
+              left: left + w / 2 - arrowSize / 2 - (arrowShadowSize / 2),
+              top: top - 10 - arrowSize / 2 + (arrowShadowSize / 2),
+            }} />
+          <Entypo name={arrowName} size={(arrowSize)} color={shadowColor} style={{
+                position: 'absolute',
+                backgroundColor: 'transparent',
+                left: left + w / 2 - arrowSize / 2 + (arrowShadowSize / 2),
+                top: top - 10 - arrowSize / 2 - (arrowShadowSize / 2),
+            }} />
+          <Entypo name={arrowName} size={(arrowSize)} color={shadowColor} style={{
+                position: 'absolute',
+                backgroundColor: 'transparent',
+                left: left + w / 2 - arrowSize / 2 + (arrowShadowSize / 2),
+                top: top - 10 - arrowSize / 2 + (arrowShadowSize / 2),
+            }} />
+
+          <Entypo name={arrowName} size={arrowSize} color="#ffffff" style={{
+            position: 'absolute',
+            backgroundColor: 'transparent',
+            left: left + w / 2 - arrowSize / 2,
+            top: top - 10 - arrowSize / 2,
+          }} />
+      </View>
     );
   }
 );
