@@ -9,11 +9,8 @@ import React from 'react';
 
 import { connect, Provider } from 'react-redux';
 import { createStore } from 'redux';
-
-import REPL from './REPL';
+import Expo from 'expo';
 import Styles from './Styles';
-
-REPL.registerEval('main', (c) => eval(c)); // eslint-disable-line no-eval
 
 // Import from a different module for a different game!
 import { Scene, sceneReduce } from './Foodwheel';
@@ -130,10 +127,6 @@ class Game extends React.Component {
 const dispatchQueue = [];
 
 const mainReduce = (state, action) => {
-  if (action.type === 'TICK') {
-    REPL.flushEvalInQueue();
-  }
-
   const actions = [action].concat(dispatchQueue);
   dispatchQueue.length = 0;
   const dispatch = (action) => actions.push(action);
@@ -146,10 +139,6 @@ const mainReduce = (state, action) => {
 const store = createStore(mainReduce, mainReduce(undefined, { type: 'START' }));
 
 class Main extends React.Component {
-  componentDidMount() {
-    REPL.connect();
-  }
-
   render() {
     return (
       <Provider store={store}>
@@ -159,4 +148,4 @@ class Main extends React.Component {
   }
 }
 
-AppRegistry.registerComponent('main', () => Main);
+Expo.registerRootComponent(Main);

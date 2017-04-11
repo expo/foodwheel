@@ -3,25 +3,22 @@
 import {
   Image,
   Linking,
-  NativeModules,
   View,
   Platform,
   StatusBar,
 } from 'react-native';
 import React from 'react';
 
-import { Entypo } from '@exponent/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 import { connect } from 'react-redux';
-import 'exponent';
+import Expo from 'expo';
 import Immutable from 'seamless-immutable';
 
 import Media from './Media';
-let { ExponentConstants } = NativeModules;
-import REPL from './REPL';
 import Styles from './Styles';
 
-REPL.registerEval('Foodwheel', (c) => eval(c)); // eslint-disable-line no-eval
+let { Constants } = Expo;
 
 const TWOPI = Math.PI * 2.0;
 
@@ -216,9 +213,9 @@ class Scene extends React.Component {
   }
 
   handleLink(url) {
-    if (ExponentConstants.linkingUri) {
-      if (url.indexOf(ExponentConstants.linkingUri) === 0) {
-        let linkPath = url.substring(ExponentConstants.linkingUri.length);
+    if (Constants.linkingUri) {
+      if (url.indexOf(Constants.linkingUri) === 0) {
+        let linkPath = url.substring(Constants.linkingUri.length);
         if (linkPath === 'spin') {
           this.props.dispatch({
             type: 'SPIN',
