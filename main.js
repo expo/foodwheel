@@ -1,10 +1,6 @@
 'use strict';
 
-import {
-  AppRegistry,
-  PanResponder,
-  View,
-} from 'react-native';
+import { AppRegistry, PanResponder, View } from 'react-native';
 import React from 'react';
 
 import { connect, Provider } from 'react-redux';
@@ -25,34 +21,31 @@ import { Scene, sceneReduce } from './Foodwheel';
  * actually render anything.
  */
 
-const Touch = connect()(
-  ({ dispatch, children, ...props }) => {
-    const panGrant = (_, gestureState) =>
-      dispatch({ ...gestureState, type: 'TOUCH', pressed: true });
-    const panMove = (_, gestureState) =>
-      dispatch({ ...gestureState, type: 'TOUCH', move: true });
-    const panRelease = (_, gestureState) =>
-      dispatch({ ...gestureState, type: 'TOUCH', pressed: false });
-    const panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderGrant: panGrant,
-      onPanResponderMove: panMove,
-      onPanResponderRelease: panRelease,
-      onPanResponderTerminate: panRelease,
-      onShouldBlockNativeResponder: () => false,
-    });
+const Touch = connect()(({ dispatch, children, ...props }) => {
+  const panGrant = (_, gestureState) =>
+    dispatch({ ...gestureState, type: 'TOUCH', pressed: true });
+  const panMove = (_, gestureState) =>
+    dispatch({ ...gestureState, type: 'TOUCH', move: true });
+  const panRelease = (_, gestureState) =>
+    dispatch({ ...gestureState, type: 'TOUCH', pressed: false });
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderGrant: panGrant,
+    onPanResponderMove: panMove,
+    onPanResponderRelease: panRelease,
+    onPanResponderTerminate: panRelease,
+    onShouldBlockNativeResponder: () => false,
+  });
 
-    return (
-      <View
-        {...props}
-        {...panResponder.panHandlers}
-        style={{ ...props.style, flex: 1 }}>
-        {children}
-      </View>
-    );
-  }
-);
-
+  return (
+    <View
+      {...props}
+      {...panResponder.panHandlers}
+      style={{ ...props.style, flex: 1 }}>
+      {children}
+    </View>
+  );
+});
 
 /**
  * Clock
@@ -98,7 +91,6 @@ class Clock extends React.Component {
   }
 }
 
-
 /**
  * Game
  *
@@ -117,7 +109,6 @@ class Game extends React.Component {
   }
 }
 
-
 /**
  * Main
  *
@@ -129,7 +120,7 @@ const dispatchQueue = [];
 const mainReduce = (state, action) => {
   const actions = [action].concat(dispatchQueue);
   dispatchQueue.length = 0;
-  const dispatch = (action) => actions.push(action);
+  const dispatch = action => actions.push(action);
   while (actions.length > 0) {
     state = sceneReduce(state, actions.shift(), dispatch);
   }
