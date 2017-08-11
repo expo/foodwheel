@@ -3,8 +3,8 @@
   "description": "Food Wheel",
   "slug": "foodwheel",
   "privacy": "unlisted",
-  "sdkVersion": "18.0.0",
-  "version": "1.18.0",
+  "sdkVersion": "20.0.0",
+  "version": "1.20.0",
   "icon": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
   "primaryColor": "#ff0000",
   "orientation": "portrait",
@@ -20,7 +20,6 @@
     "package": "com.terribleben.foodwheel"
   },
   "packagerOpts": {
-    "assetExts": ["ttf", "png"],
-    "config": "./rn-cli.config.js"
+    "assetExts": ["ttf", "png"]
   }
 }
