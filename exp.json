@@ -15,6 +15,7 @@
   },
   "ios": {
     "bundleIdentifier": "com.terribleben.foodwheel",
+    "buildNumber": "100"
   },
   "android": {
     "package": "com.terribleben.foodwheel"
