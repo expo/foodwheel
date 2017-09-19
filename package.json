@@ -1,14 +1,14 @@
 {
   "name": "foodwheel",
-  "version": "1.20.0",
+  "version": "1.21.0",
   "description": "Wheeeeeeeeeeee!!",
   "main": "main.js",
   "author": "",
   "dependencies": {
     "@expo/vector-icons": "^5.0.0",
-    "expo": "^20.1.0",
+    "expo": "21.0.0-rc.5",
     "react": "16.0.0-alpha.12",
-    "react-native": "https://github.com/expo/react-native#sdk-20.0.0",
+    "react-native": "expo/react-native#sdk-21",
     "react-redux": "^5.0.0",
     "redux": "^3.7.0",
     "seamless-immutable": "^6.1.0"
