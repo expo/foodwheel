@@ -18,6 +18,7 @@
     "buildNumber": "100"
   },
   "android": {
+    "versionCode": "foobar",
     "package": "com.terribleben.foodwheel"
   },
   "packagerOpts": {
