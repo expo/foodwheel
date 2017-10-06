@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Food Wheel",
+    "description": "Food Wheel",
+    "slug": "foodwheel",
+    "privacy": "unlisted",
+    "sdkVersion": "21.0.0",
+    "version": "1.20.0",
+    "icon": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
+    "primaryColor": "#ff0000",
+    "orientation": "portrait",
+    "scheme": "foodwheel",
+    "loading": {
+      "icon": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
+      "hideExponentText": true
+    },
+    "ios": {
+      "bundleIdentifier": "com.terribleben.foodwheel",
+      "buildNumber": "100"
+    },
+    "android": {
+      "package": "com.terribleben.foodwheel"
+    },
+    "packagerOpts": {
+      "assetExts": [
+        "ttf",
+        "png"
+      ]
+    }
+  }
+}
