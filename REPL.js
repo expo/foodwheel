@@ -29,9 +29,7 @@ const registerEval = (contextName, evaluator) => {
  */
 const evalIn = (contextName, code) => {
   if (!evalMap[contextName]) {
-    throw new Error(
-      `Evaluator context '${contextName}' not registered ` + ` for evalIn(...)`
-    );
+    throw new Error(`Evaluator context '${contextName}' not registered ` + ` for evalIn(...)`);
   }
   return evalMap[contextName](code);
 };

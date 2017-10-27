@@ -99,8 +99,7 @@ const wheelReduce = defaultReducer({
     let distanceCenterToTouch = Math.sqrt(
       vCenterToTouch.x * vCenterToTouch.x + vCenterToTouch.y * vCenterToTouch.y
     );
-    let magicalTorqueFactor =
-      distanceCenterToTouch * 0.02 * (0.5 * Styles.screenW);
+    let magicalTorqueFactor = distanceCenterToTouch * 0.02 * (0.5 * Styles.screenW);
 
     if (Platform.OS === 'android') {
       // cool velocity, android
@@ -108,7 +107,8 @@ const wheelReduce = defaultReducer({
     }
 
     return wheel.merge({
-      avel: Math.sin(diffAngle(angleTouchVelocity, angleCenterToTouch)) *
+      avel:
+        Math.sin(diffAngle(angleTouchVelocity, angleCenterToTouch)) *
         magnitudeTouchVelocity *
         magicalTorqueFactor,
     });
@@ -272,9 +272,7 @@ class Scene extends React.Component {
 
   render() {
     return (
-      <View
-        key="scene-container"
-        style={[Styles.container, { backgroundColor: '#000' }]}>
+      <View key="scene-container" style={[Styles.container, { backgroundColor: '#000' }]}>
         <StatusBar style="default" />
         <Tabletop />
         <Wheel />

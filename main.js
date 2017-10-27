@@ -22,10 +22,8 @@ import { Scene, sceneReduce } from './Foodwheel';
  */
 
 const Touch = connect()(({ dispatch, children, ...props }) => {
-  const panGrant = (_, gestureState) =>
-    dispatch({ ...gestureState, type: 'TOUCH', pressed: true });
-  const panMove = (_, gestureState) =>
-    dispatch({ ...gestureState, type: 'TOUCH', move: true });
+  const panGrant = (_, gestureState) => dispatch({ ...gestureState, type: 'TOUCH', pressed: true });
+  const panMove = (_, gestureState) => dispatch({ ...gestureState, type: 'TOUCH', move: true });
   const panRelease = (_, gestureState) =>
     dispatch({ ...gestureState, type: 'TOUCH', pressed: false });
   const panResponder = PanResponder.create({
@@ -38,10 +36,7 @@ const Touch = connect()(({ dispatch, children, ...props }) => {
   });
 
   return (
-    <View
-      {...props}
-      {...panResponder.panHandlers}
-      style={{ ...props.style, flex: 1 }}>
+    <View {...props} {...panResponder.panHandlers} style={{ ...props.style, flex: 1 }}>
       {children}
     </View>
   );
